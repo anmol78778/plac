@@ -21,9 +21,8 @@ const cartSchema = z.object({
     .min(1),
 });
 
-
 export async function createCheckout(req: Request, res: Response, next: NextFunction) {
-     try {
+  try {
     // only signed-in users can start checkout
     const { userId, isAuthenticated } = getAuth(req);
     if (!isAuthenticated || !userId) {
@@ -93,13 +92,10 @@ export async function createCheckout(req: Request, res: Response, next: NextFunc
       })
       .returning();
 
+    const successUrl = `${env.FRONTEND_URL}/checkout/return?checkout_id={CHECKOUT_ID}`;
+    const returnUrl = `${env.FRONTEND_URL}/cart`;
 
-       const successUrl = `${env.FRONTEND_URL}/checkout/return?checkout_id={CHECKOUT_ID}`;
-       const returnUrl = `${env.FRONTEND_URL}/cart`;
-
-
-
-        const checkout = await polarCreateCheckout(env, {
+    const checkout = await polarCreateCheckout(env, {
       products: [env.POLAR_CHECKOUT_PRODUCT_ID],
       prices: {
         [env.POLAR_CHECKOUT_PRODUCT_ID]: [
@@ -123,5 +119,7 @@ export async function createCheckout(req: Request, res: Response, next: NextFunc
       .where(eq(checkoutSessions.id, session.id));
 
     res.json({ checkoutUrl: checkout.url });
-  }catch (error) {}
+  } catch (e) {
+    next(e);
+  }
 }
