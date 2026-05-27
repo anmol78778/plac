@@ -1,8 +1,13 @@
 import React from 'react'
-import { Show, SignInButton, SignUpButton, UserButton } from '@clerk/react'
+import { Show, SignInButton, SignUpButton, useAuth, UserButton } from '@clerk/react'
+import PageLoader from './components/PageLoader'
+import Layout from './components/Layout'
 const App = () => {
+  const {isLoaded}=useAuth()
+
+  if(!isLoaded) return <PageLoader/>
   return (
-    <div>
+    <Layout>
        <header>
         <Show when="signed-out">
           <SignInButton />
@@ -12,7 +17,7 @@ const App = () => {
           <UserButton />
         </Show>
       </header>
-    </div>
+    </Layout>
   )
 }
 
