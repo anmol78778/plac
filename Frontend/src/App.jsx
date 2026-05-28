@@ -11,6 +11,8 @@ import { useAuth } from "@clerk/clerk-react";
 
 import PageLoader from "./components/PageLoader";
 import Layout from "./components/Layout";
+import { Route, Routes } from "react-router";
+import HomePage from "./pages/HomePage";
 
 export default function App() {
   const { isLoaded } = useAuth();
@@ -19,9 +21,9 @@ export default function App() {
 
   return (
     <Layout>
-      <header>
-        
-      </header>
+      <Routes>
+        <Route path="/" element={<HomePage/>}/>
+      </Routes>
     </Layout>
   );
 }
