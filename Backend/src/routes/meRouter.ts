@@ -6,14 +6,14 @@ const router = Router();
 
 router.get("/", async (req, res, next) => {
   try {
-    const { userId, isAuthenticated } = getAuth(req);
-    if (!isAuthenticated || !userId) {
+    const { userId } = getAuth(req);
+    if ( !userId) {
       res.status(401).json({ error: "Unauthorized" });
       return;
     }
-
+//!isAuthenticated ||
     const user = await getLocalUser(userId);
-
+     console.log("AUTH DEBUG:", getAuth(req));
     res.json({ user });
   } catch (e) {
     next(e);

@@ -7,7 +7,8 @@ import * as Sentry from "@sentry/react";
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
-import { ClerkProvider } from "@clerk/react";
+// import { ClerkProvider } from "@clerk/react";
+import { ClerkProvider } from "@clerk/clerk-react";
 import { BrowserRouter } from "react-router";
 import { SentryErrorFallback } from "./components/SentryErrorFallback.jsx";
 import { SentryUserSync } from "./components/SentryUserSync.jsx";
@@ -38,7 +39,7 @@ Sentry.init({
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <ClerkProvider>
+    <ClerkProvider publishableKey={import.meta.env.VITE_CLERK_PUBLISHABLE_KEY}>
       <SentryUserSync />
       <QueryClientProvider client={queryClient}>
         <BrowserRouter>

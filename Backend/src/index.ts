@@ -50,12 +50,7 @@ app.use(
     credentials: true,
   })
 );
-app.use(
-  clerkMiddleware({
-    publishableKey: process.env.CLERK_PUBLISHABLE_KEY,
-    secretKey: process.env.CLERK_SECRET_KEY,
-  })
-);
+app.use(clerkMiddleware());
 app.use((req, _res, next) => {
   console.log("AUTH HEADER:", req.headers.authorization);
   next();

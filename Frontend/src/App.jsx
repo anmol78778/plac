@@ -6,10 +6,7 @@
 //   useAuth
 // } from "@clerk/react";
 
-import {
-
-  useAuth
-} from "@clerk/react";
+import { useAuth } from "@clerk/clerk-react";
 
 
 import PageLoader from "./components/PageLoader";
@@ -23,18 +20,13 @@ export default function App() {
   return (
     <Layout>
       <header>
-        {/* <SignedOut>
-          <SignInButton mode="modal" />
-          <SignUpButton mode="modal" />
-        </SignedOut>
-
-        <SignedIn>
-          <UserButton />
-        </SignedIn> */}
+        
       </header>
     </Layout>
   );
 }
+
+
 
 
 // import { Show, SignInButton, SignUpButton, useAuth, UserButton } from "@clerk/react";
