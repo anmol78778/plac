@@ -1,4 +1,4 @@
-import "dotenv";
+import "dotenv/config";
 import express from "express";
 import cors from "cors";
 
@@ -42,9 +42,24 @@ app.post("/webhooks/polar", rawJson, (req, res) => {
   void polarWebhookHandler(req, res);
 });
 
+console.log("ME ROUTE HIT");
 app.use(express.json());
-app.use(cors());
-app.use(clerkMiddleware());
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    credentials: true,
+  })
+);
+app.use(
+  clerkMiddleware({
+    publishableKey: process.env.CLERK_PUBLISHABLE_KEY,
+    secretKey: process.env.CLERK_SECRET_KEY,
+  })
+);
+app.use((req, _res, next) => {
+  console.log("AUTH HEADER:", req.headers.authorization);
+  next();
+});
 app.use(sentryClerkUserMiddleware);
 
 app.get("/health", (_req, res) => {

@@ -6,7 +6,7 @@ export function SentryErrorFallback() {
       <p className="text-base-content/80">Something went wrong. The error was reported.</p>
 
       <Link to="/" className="btn btn-primary btn-sm mt-6">
-        Back to shop 
+        Back to shop
       </Link>
     </div>
   );

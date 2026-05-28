@@ -2,8 +2,7 @@ import { getAuth } from "@clerk/express";
 import { Router } from "express";
 import { getLocalUser } from "../lib/users";
 
-const router=Router()
-
+const router = Router();
 
 router.get("/", async (req, res, next) => {
   try {
@@ -19,6 +18,6 @@ router.get("/", async (req, res, next) => {
   } catch (e) {
     next(e);
   }
-}
-);
-export default router
+});
+
+export default router;
