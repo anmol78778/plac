@@ -11,8 +11,9 @@ import { useAuth } from "@clerk/clerk-react";
 
 import PageLoader from "./components/PageLoader";
 import Layout from "./components/Layout";
-import { Route, Routes } from "react-router";
+import { Route, Routes } from "react-router-dom";
 import HomePage from "./pages/HomePage";
+import CartPage from "./pages/CartPage";
 
 export default function App() {
   const { isLoaded } = useAuth();
@@ -23,6 +24,7 @@ export default function App() {
     <Layout>
       <Routes>
         <Route path="/" element={<HomePage/>}/>
+        <Route path="/cart" element={<CartPage/>}/>
       </Routes>
     </Layout>
   );

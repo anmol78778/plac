@@ -9,7 +9,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 // import { ClerkProvider } from "@clerk/react";
 import { ClerkProvider } from "@clerk/clerk-react";
-import { BrowserRouter } from "react-router";
+import { BrowserRouter } from "react-router-dom";
 import { SentryErrorFallback } from "./components/SentryErrorFallback.jsx";
 import { SentryUserSync } from "./components/SentryUserSync.jsx";
 
