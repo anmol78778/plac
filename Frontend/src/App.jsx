@@ -11,12 +11,13 @@ import { useAuth } from "@clerk/clerk-react";
 
 import PageLoader from "./components/PageLoader";
 import Layout from "./components/Layout";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes ,Navigate } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import CartPage from "./pages/CartPage";
+import OrdersPage from "./pages/OrdersPage";
 
 export default function App() {
-  const { isLoaded } = useAuth();
+  const { isLoaded,isSignedIn } = useAuth();
 
   if (!isLoaded) return <PageLoader />;
 
@@ -25,6 +26,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<HomePage/>}/>
         <Route path="/cart" element={<CartPage/>}/>
+        <Route path="/orders" element={isSignedIn ? <OrdersPage/> : <Navigate to={"/"}  replace/>}/>
       </Routes>
     </Layout>
   );
